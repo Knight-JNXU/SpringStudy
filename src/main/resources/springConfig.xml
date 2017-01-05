@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 实践证明：
+    1、多个context:property-placeholder不能并存
+    2、context:property-placeholder和org.springframework.beans.factory.config.PropertyPlaceholderConfigurer不能并存
+    3、org.springframework.beans.factory.config.PropertyPlaceholderConfigurer可以在多个配置文件中访问，且无需加id，
+    比如下面这个，在引用properties的值时，前面不需要加props.
+     -->
+    <context:property-placeholder location="classpath:p4.properties"/>
+    <context:property-placeholder location="classpath:p5.properties"/>
+    <!--<bean id="props" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:p1.properties</value>
+                <value>classpath:p2.properties</value>
+                <value>classpath:p3.properties</value>
+            </list>
+        </property>
+    </bean>-->
+
+    <!--<bean id="test10" class="code.Test1">
+        <property name="s1" value="${s1}"/>
+    </bean>
+
+    <bean id="test11" class="code.Test1">
+        <property name="s2" value="${s2}"/>
+        <property name="s3" value="${s3}"/>
+        &lt;!&ndash;<property name="s1" value="${s4}"/>&ndash;&gt;
+    </bean>-->
+
+    <bean id="test12" class="code.Test1">
+        <property name="s1" value="${s4}"/>
+        <property name="s2" value="${s5}"/>
+    </bean>
+</beans>
