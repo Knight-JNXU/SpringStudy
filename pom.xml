@@ -94,26 +94,29 @@
 		    <version>1.0.29</version>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<finalName>BaseSpring</finalName>
 		<plugins>
-			<!-- TOMCAT热部署插件 -->
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-
-					<path>/self_help</path>
-
-					<url>http://localhost:8080/manager/html</url>
-
-					<server>tomcat7</server>
-
-					<port>8080</port>
-				</configuration>
-			</plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>3.1</version>
+		        <configuration>
+		            <source>1.7</source>
+		            <target>1.7</target>
+		        </configuration>
+		    </plugin>
+		    
+		
+		    <plugin>
+		      <groupId>org.apache.tomcat.maven</groupId>
+		      <artifactId>tomcat7-maven-plugin</artifactId>
+		      <version>2.2</version>
+		      <configuration>
+			    <path>/</path>
+			  </configuration>
+		     </plugin>
 		</plugins>
 	</build>
 
