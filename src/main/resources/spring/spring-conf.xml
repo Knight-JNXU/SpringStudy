@@ -8,8 +8,9 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
 
 
     <!-- 激活组件扫描功能,扫描aop的相关组件组件 -->
