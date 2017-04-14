@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @result :
  */
 @Controller
-public class StudentController {
+public class MenuController {
     
     /**
      * 基本的controller测试
      * @return
      */
-    @RequestMapping("/StudentController/hello")
-    public String hello(){
-        System.out.println("hello world!");
-        return "hello";
+    @RequestMapping("/menuController/go")
+    public String goMenu(){
+        return "menu";
     }
     
     /**
@@ -28,7 +27,7 @@ public class StudentController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/StudentController/throwException")
+    @RequestMapping("/menuController/throwException")
     public String throwException() throws Exception{
         throw new Exception("test throw exception!");
     }
