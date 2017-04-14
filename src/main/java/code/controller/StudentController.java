@@ -11,9 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class StudentController {
+    
+    /**
+     * 基本的controller测试
+     * @return
+     */
     @RequestMapping("/StudentController/hello")
     public String hello(){
         System.out.println("hello world!");
         return "hello";
+    }
+    
+    /**
+     * 跑出异常的controller测试
+     * 这个会直接使用
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/StudentController/throwException")
+    public String throwException() throws Exception{
+        throw new Exception("test throw exception!");
     }
 }

@@ -19,7 +19,7 @@ import code.dto.BaseResult;
 /**
  * 
  * @author knight
- * @description:ÓÃÓÚ´¦ÀíÈ«¾ÖÒì³£
+ * @description:å…¨å±€å¼‚å¸¸å¤„ç†
  */
 
 @Component
@@ -29,13 +29,13 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver{
 
     @ResponseBody
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        LOG.error("·ÃÎÊ" + request.getRequestURI() + " ·¢Éú´íÎó, ´íÎóĞÅÏ¢:" + ex.getMessage());
-        //ÕâÀïÓĞ2ÖÖÑ¡Ôñ
-        //Ìø×ªµ½¶¨ÖÆ»¯µÄ´íÎóÒ³Ãæ
+        LOG.error("exception url:" + request.getRequestURI() + " , exception message:" + ex.getMessage());
+        //è¿™é‡Œæœ‰2ç§é€‰æ‹©
+        //è·³è½¬åˆ°å®šåˆ¶åŒ–çš„é”™è¯¯é¡µé¢
         /*ModelAndView error = new ModelAndView("error");
         error.addObject("exMsg", ex.getMessage());
         error.addObject("exType", ex.getClass().getSimpleName().replace("\"", "'"));*/
-        //·µ»Øjson¸ñÊ½µÄ´íÎóĞÅÏ¢
+        //è¿”å›jsonæ ¼å¼çš„é”™è¯¯ä¿¡æ¯
         try {
             PrintWriter writer = response.getWriter();
             BaseResult<String> result=new BaseResult(false, ex.getMessage());
