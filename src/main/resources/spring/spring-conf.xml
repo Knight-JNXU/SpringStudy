@@ -11,8 +11,6 @@
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-
-
     <!-- 激活组件扫描功能,扫描aop的相关组件组件 -->
     <context:component-scan base-package="code.aop"/>
     <!-- 启动对@AspectJ注解的支持 -->
@@ -48,5 +46,23 @@
 
 	<!--全局异常捕捉 -->
 	<bean class="code.exception.GlobalExceptionResolver" />
+	
+	
+	<!-- 国际化 -->
+	<!-- 配置国际化资源文件路径 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<!-- 定义语言资源文件的相对路径 -->
+			<value>language</value>
+		</property>
+	</bean>
+	<!-- 基于Cookie的本地化解析器 -->
+     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+       <property name="cookieMaxAge" value="604800"/>
+       <property name="defaultLocale" value="zh_CN"/>
+       <property name="cookieName" value="Language"/>
+     </bean>
+    <!-- 基于Session的本地化解析器 -->
+    <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />-->
 
 </beans>
