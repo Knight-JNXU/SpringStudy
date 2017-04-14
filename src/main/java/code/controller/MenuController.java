@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @result :
  */
 @Controller
-public class MenuController {
+public class MenuController extends BaseController{
     
     /**
      * 基本的controller测试

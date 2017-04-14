@@ -14,7 +14,6 @@ import code.dto.BaseResult;
 /**
  * @author knight
  *
- * 采用AOP的方式处理参数问题。
  */
 @Component
 @Aspect
@@ -22,12 +21,12 @@ public class BindingResultAop {
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.yingjun.ssm.web.*.*(..))")
+    @Pointcut("execution(* code.controller.*.*(..))")
     public void aopMethod(){}
 
     @Around("aopMethod()")
-    public Object  around(ProceedingJoinPoint joinPoint) throws Throwable{
-        LOG.info("before method invoking!");
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable{
+        LOG.info(joinPoint.getSignature() + " method is invoking!");
         BindingResult bindingResult = null;
         for(Object arg:joinPoint.getArgs()){
             if(arg instanceof BindingResult){
