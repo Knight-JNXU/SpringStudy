@@ -46,11 +46,13 @@
 	<!-- 配置国际化资源文件 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename">
+		<property name="basenames">
 			<!-- 定义消息资源文件的相对路径(messages/message_en.properties) -->
-			<value>
-				language/*.properties
-			</value>
+			<list>
+				<value>message/messages</value>
+				<!-- <value>classpath*:message/**/*.properties</value> -->
+				<!-- <value>classpath:message/messages</value> -->
+			</list>
 		</property>
 		<property name="useCodeAsDefaultMessage">
 			<value>false</value>
@@ -58,22 +60,15 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
-	<!-- 国际化 -->
-	<!-- 配置国际化资源文件路径 -->
-	<!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
-		<property name="defaultEncoding" value="UTF-8"/> <property name="basenames"> 
-		定义语言资源文件的相对路径 <list> <value>classpath*:i18n/*.properties</value> </list> 
-		</property> </bean> -->
-
 	<!-- cookie、session两个区域解析器 -->
 	<!-- 基于cookie的本地化解析器 -->
-	<!-- <bean id="localeResolver"
+	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		设置最大有效时间，如果是-1，则不存储，浏览器关闭后即失效，默认为Integer.MAX_INT
+		<!-- 设置最大有效时间，如果是-1，则不存储，浏览器关闭后即失效，默认为Integer.MAX_INT -->
 		<property name="cookieMaxAge" value="604800" />
 		<property name="defaultLocale" value="zh_CN" />
 		<property name="cookieName" value="Language" />
-	</bean> -->
+	</bean>
 
 	<!-- 基于session的本地化解析器 -->
 	<!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/> -->
