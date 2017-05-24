@@ -53,6 +53,10 @@ public class MenuController extends BaseController{
         return "changeModel";
     }
     
+    /**
+     * 往model中添加值
+     * @param model
+     */
     private void addModelValue(Model model){
         model.addAttribute("isChangeFlag", true);
     }
