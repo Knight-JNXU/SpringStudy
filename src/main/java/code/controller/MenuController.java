@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+
 
 /**
  * @author knight
@@ -38,6 +40,21 @@ public class MenuController extends BaseController{
     @RequestMapping("/menuController/throwException")
     public String throwException() throws Exception{
         throw new Exception("test throw exception!");
+    }
+    
+    /**
+     * 改变model
+     * @param model
+     * @return
+     */
+    @RequestMapping("/menuController/changeModel")
+    public String changeModel(Model model){
+        addModelValue(model);
+        return "changeModel";
+    }
+    
+    private void addModelValue(Model model){
+        model.addAttribute("isChangeFlag", true);
     }
     
 }
