@@ -12,6 +12,7 @@
 	<definition name="*" extends="baseTemplate">
 			<put-attribute name="center" value="/pages/{1}.jsp" />
 	</definition>
+	
 	<definition name="*/*" extends="baseTemplate">
 			<put-attribute name="center" value="/pages/{1}/{2}.jsp" />
 	</definition>
