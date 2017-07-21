@@ -20,7 +20,15 @@ public class MenuController extends BaseController{
      */
     @RequestMapping("/menuController/go")
     public String goMenu(){
-        return "menu";
+        return "menu/menupage";
+    }
+    /**
+     * 基本的controller测试
+     * @return
+     */
+    @RequestMapping("/menuController/hello")
+    public String hello(){
+        return "hello";
     }
     
     /**
