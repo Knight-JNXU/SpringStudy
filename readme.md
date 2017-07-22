@@ -7,3 +7,4 @@
 - 3.tiles模板
 - 4.mybatis //todo
 - 5.hibernate //todo
+- 6.新增 jquery-3.2.1
