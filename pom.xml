@@ -2,25 +2,54 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.learn</groupId>
-	<artifactId>BaseSpring</artifactId>
+	<artifactId>SpringPrototypePattern</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
 		<!-- 指定spring版本 -->
-		<!--<spring.version>4.3.7.RELEASE</spring.version> -->
-		<spring.version>4.2.0.RELEASE</spring.version>
+		<spring.version>5.0.2.RELEASE</spring.version>
 
 		<!-- 指定maven编译的java版本 -->
-		<maven-compiler-plugin.source.version>1.7</maven-compiler-plugin.source.version>
-		<maven-compiler-plugin.target.version>1.7</maven-compiler-plugin.target.version>
+		<maven-compiler-plugin.source.version>1.8</maven-compiler-plugin.source.version>
+		<maven-compiler-plugin.target.version>1.8</maven-compiler-plugin.target.version>
 		
 		<!-- tiles模板 -->
 		<tiles.version>3.0.7</tiles.version>
+		
+		<!-- fasterxml jackson 解析工具 -->
+		<jackson.version>2.9.3</jackson.version>
+		
+		<!-- feilong工具包 -->
+		<version.feilong-platform>1.10.7</version.feilong-platform>
+		
+		<!-- 单元测试 -->
+		<version.junit>4.12</version.junit>
 
 		<!-- 指定子module是否使用此父类的maven-compiler-plugin -->
 		<maven-compiler-plugin.inherited>true</maven-compiler-plugin.inherited>
 	</properties>
+	
+     <repositories>
+		<repository>
+			<!-- A unique identifier for a repository. -->
+			<id>feilong-platform-repository</id>
+
+			<!--Human readable name of the repository. -->
+			<name>feilong platform repository</name>
+
+			<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -68,6 +97,11 @@
 			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -95,9 +129,14 @@
 
 		<!-- 用于json和xml解析 -->
 		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.8.8</version>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- 数据源 -->
@@ -133,10 +172,30 @@
 			<artifactId>tiles-servlet</artifactId>
 			<version>${tiles.version}</version>
 		</dependency>
+		
+		<!-- feilong工具包 -->
+		<dependency>
+            <groupId>com.feilong.platform</groupId>
+            <artifactId>feilong-core</artifactId>
+            <version>${version.feilong-platform}</version>
+        </dependency>
+        <dependency>
+			<groupId>com.feilong.net</groupId>
+			<artifactId>feilong-net-httpclient4</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+		
+		<!-- 单元测试 -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>${version.junit}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
-		<finalName>BaseSpring</finalName>
+		<finalName>SpringPrototypePattern</finalName>
 		<plugins>
 			<!-- maven-compiler-plugin -->
 			<plugin>

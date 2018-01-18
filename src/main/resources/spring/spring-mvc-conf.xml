@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+<!--简化配置: 1、自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter 
+		2、提供一系列:数据绑定,数字和日期的format,@NumberFormat,@DataTimeFormat,xml,json默认读写支持 -->
+	<mvc:annotation-driven />
+
+	<!--静态资源默认servlet配置 1、加入对静态资源的处理:js,css,gif,png 2、允许使用"/"做整体映射 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 静态资源配置 -->
+	<mvc:resources mapping="../css/**" location="/css/" />
+	<mvc:resources mapping="../js/**" location="/js/" />
+	<mvc:resources mapping="../imges/**" location="/imges/" />
+	<mvc:resources mapping="../html/**" location="/html/" />
+
+	<!--配置JSP 显示ViewResolver -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="order" value="1" />
+	    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"></property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 配置国际化资源文件 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<!-- 定义消息资源文件的相对路径(messages/message_en.properties) -->
+			<list>
+				<value>message/messages</value>
+				<!-- <value>classpath*:message/**/*.properties</value> -->
+				<!-- <value>classpath:message/messages</value> -->
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage">
+			<value>false</value>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- cookie、session两个区域解析器 -->
+	<!-- 基于cookie的本地化解析器 -->
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<!-- 设置最大有效时间，如果是-1，则不存储，浏览器关闭后即失效，默认为Integer.MAX_INT -->
+		<property name="cookieMaxAge" value="604800" />
+		<property name="defaultLocale" value="zh_CN" />
+		<property name="cookieName" value="Language" />
+	</bean>
+
+	<!-- 基于session的本地化解析器 -->
+	<!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/> -->
+</beans>
