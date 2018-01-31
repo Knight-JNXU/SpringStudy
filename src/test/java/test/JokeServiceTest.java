@@ -10,7 +10,7 @@ import com.feilong.json.jsonlib.JsonUtil;
 import code.service.JokeService;
 
 /**
- * @author liuwen
+ * @author knightjxnu
  * @version 1.0
  * @date 2018年1月18日
  * @function : 
