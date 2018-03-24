@@ -10,7 +10,7 @@
 <script src="${base }/js/account/account.js"></script>
 </head>
 <body style="text-align:center;">
-<h3>浪漫Q糖注册</h3>
+<h3>注册</h3>
 账号：<input id="userName" name="name" type="text"><br><br>
 密码：<input id="userPwd" name="pwd" type="password"><br><br>
 <input id="registerBt" type="button" value="注册"/>
