@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+	<mvc:annotation-driven />
+
+	<!--静态资源默认servlet配置 1、加入对静态资源的处理:js,css,gif,png 2、允许使用"/"做整体映射 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 静态资源配置 -->
+	<mvc:resources mapping="../css/**" location="/css/" />
+	<mvc:resources mapping="../js/**" location="/js/" />
+	<mvc:resources mapping="../imges/**" location="/imges/" />
+	<mvc:resources mapping="../html/**" location="/html/" />
+	
+	<!--扫描web相关的controller, service -->
+	<context:component-scan base-package="code.controller" />
+
+	<bean id="csrfSecurityRequestMatcher"
+		class="com.xxx.CsrfSecurityRequestMatcher"></bean>
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:headers>
+			<security:frame-options disabled="true" />
+		</security:headers>
+		<security:csrf
+			request-matcher-ref="csrfSecurityRequestMatcher" />
+	</security:http>
+</beans>
