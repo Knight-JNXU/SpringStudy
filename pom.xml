@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.learn</groupId>
+  <artifactId>SpringSocial</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <properties>
+  	<spring-social.version>1.1.6.RELEASE</spring-social.version>
+  	<spring-social-facebook.version>2.0.3.RELEASE</spring-social-facebook.version>
+  </properties>
+  
+  <dependencies>
+  
+  	<dependency>
+	  <groupId>org.springframework.social</groupId>
+	  <artifactId>spring-social-core</artifactId>
+	  <version>${spring-social.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.social</groupId>
+	    <artifactId>spring-social-web</artifactId>
+	    <version>${spring-social.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.social</groupId>
+  		<artifactId>spring-social-facebook</artifactId>
+	    <version>${spring-social-facebook.version}</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>org.springframework.security</groupId>
+	  <artifactId>spring-security-core</artifactId>
+	  <version>5.1.1.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>org.apache.commons</groupId>
+	  <artifactId>commons-lang3</artifactId>
+	  <version>3.8.1</version>
+	</dependency>
+	
+  </dependencies>
+  
+  
+</project>
