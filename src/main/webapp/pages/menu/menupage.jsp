@@ -15,5 +15,4 @@ base:${base }<br>
 <img src="${base }/imges/v.jpg"/><br>
 <input type="text" id="menuInputId" value="memupage">
 
-<script src="${base }/js/commons/jquery-3.2.1.min.js"></script>
 <script src="${base }/js/menu/menupagejs.js"></script>

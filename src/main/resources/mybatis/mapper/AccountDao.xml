@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="code.dao.AccountDao">
+	<insert id="insert" parameterType="code.model.AccountModel">
+		INSERT 
+			INTO 
+		tbl_account(
+			fld_name, 
+			fld_pwd, 
+			fld_mail, 
+			fld_mobile, 
+			fld_superpwd, 
+			fld_IdCardNo, 
+			fld_RealName, 
+			fld_btIsActivate, 
+			fld_szAcode, 
+			fld_btGmLvl, 
+			fld_btSex, 
+			fld_btIsAdult, 
+			fld_dwActivateTime, 
+			fld_btPrizeType, 
+			fld_guildid, 
+			fld_yuanbao, 
+			fld_email_verify_key, 
+			fld_emailverify, 
+			usercode, 
+			fld_cellphone 
+			) VALUES 
+			(
+			#{name}, 
+			#{pwd}, 
+			#{mail},
+			#{mobile},
+			#{superpwd},
+			#{IdCardNo},
+			#{RealName},
+			#{btIsActivate},
+			#{szAcode},
+			#{btGmLvl},
+			#{btSex},
+			#{btIsAdult},
+			#{dwActivateTime},
+			#{btPrizeType},
+			#{guildid},
+			#{yuanbao},
+			#{emailVerifyKey},
+			#{emailverify},
+			#{usercode},
+			#{cellphone}
+			)
+	</insert>
+	
+	<select id="selectAccountIdByName" parameterType="string" resultType="int">
+        SELECT fld_loginid from tbl_account WHERE fld_name=#{name}
+    </select>
+	
+</mapper>

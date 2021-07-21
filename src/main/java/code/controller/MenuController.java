@@ -1,8 +1,12 @@
 package code.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import code.service.MenuService;
 
 
 /**
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MenuController extends BaseController{
+    
+    @Autowired
+    private MenuService menuService;
     
     /**
      * 基本的controller测试
@@ -53,6 +60,12 @@ public class MenuController extends BaseController{
         return "changeModel";
     }
     
+    @ResponseBody
+    @RequestMapping("/menuController/getUrlParam")
+    public String getUrlParam() {
+        return menuService.getUrlParam();
+    }
+    
     /**
      * 往model中添加值
      * @param model
@@ -60,5 +73,6 @@ public class MenuController extends BaseController{
     private void addModelValue(Model model){
         model.addAttribute("isChangeFlag", true);
     }
+    
     
 }

@@ -5,6 +5,9 @@
 - 1.使用了全局异常处理
 - 2.使用了 spring 的国际化
 - 3.tiles模板
-- 4.mybatis //todo
+- 4.mybatis
 - 5.hibernate //todo
 - 6.新增 jquery-3.2.1
+- 7.feilong
+- 8.spring-test
+- 9.junit 
