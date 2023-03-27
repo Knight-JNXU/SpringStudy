@@ -15,6 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.concurrent.*;
 
@@ -111,5 +115,38 @@ public class TestDataBootTest {
     }
 
 
+    @Test
+    public void test4(){
+        TestDataBean testDataBean0 = new TestDataBean("00000",19, "jhskdhfkahsdf");
+        int rslt = testDataDao.addTestData(testDataBean0);
+        test5();
+    }
+
+    @Transactional
+    public void test5(){
+        TestDataBean testDataBean1 = new TestDataBean(null,19, "jhskdhfkahsdf");
+        int rslt = testDataDao.addTestData(testDataBean1);
+    }
+
+
+
+    // 事务的手动回滚
+
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+    @Test
+    public void test6(){
+        TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        try {
+            TestDataBean testDataBean = new TestDataBean("jskdlfioweur",-5, "jhskdhfkahsdf");
+            testDataDao.addTestData(testDataBean); // 插入用户信息
+            if (testDataBean.getAge() < 0) {
+                transactionManager.rollback(status); // 手动回滚事务
+            }
+            transactionManager.commit(status); // 提交事务
+        } catch (Exception e) {
+            transactionManager.rollback(status); // 手动回滚事务
+        }
+    }
 
 }
