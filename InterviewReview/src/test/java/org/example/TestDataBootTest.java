@@ -11,15 +11,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.util.List;
 import java.util.concurrent.*;
 
 @RunWith(SpringRunner.class)
@@ -147,6 +153,32 @@ public class TestDataBootTest {
         } catch (Exception e) {
             transactionManager.rollback(status); // 手动回滚事务
         }
+    }
+
+    @Autowired
+    @Qualifier("myStringRedisTemplate")
+    private RedisTemplate<Object, Object> redisTemplate;
+    @Test
+    public void test7(){
+//        redisTemplate.opsForValue().set("name", "knight");
+        Object name = redisTemplate.opsForValue().get("name");
+        System.out.println(name);
+    }
+
+    @Test
+    public void test8(){
+        List<Object> result = redisTemplate.executePipelined(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.openPipeline();
+                Boolean set1 = redisConnection.set("key1".getBytes(), "value1".getBytes());
+                Boolean set2 = redisConnection.set("key2".getBytes(), "value2".getBytes());
+                Boolean set3 = redisConnection.set("key3".getBytes(), "value3".getBytes());
+                System.out.println(set1+":"+set2+":"+set3);
+                return null;
+            }
+        });
+        System.out.println(result);
     }
 
 }
